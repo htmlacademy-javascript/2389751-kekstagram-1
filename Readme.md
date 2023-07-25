@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Maksim Batuev](https://up.htmlacademy.ru/javascript-individual/1/user/2389751).
-* Наставник: `Неизвестно`.
+* Наставник: `Андрей Устименко`.
 
 ---
 
