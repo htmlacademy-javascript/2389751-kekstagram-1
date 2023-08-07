@@ -1,35 +1,53 @@
 //функция для проверки на палиндром
-const isPalindrom = (string) => {   
-    const tempString = string
+const isPalindrom = (str) => {   
+    const tempStr = str
         .toLowerCase()
         .replaceAll(' ', '');
-    let reverseString = '';
-    for (let i = tempString.length - 1; i >= 0; i--) {
-        reverseString += tempString.at(i);
+    const halfStr = Math.floor(tempStr.length / 2);
+
+    for (let i = 0, j = -1; i <= halfStr; i++, j--) {
+        if (tempStr.at(i) !== tempStr.at(j)) {
+            return false;
+        }
     }
-    return tempString === reverseString;
+
+    return true;
 }
 
-//функция по извлечению чисел и строки
-const extractNumber = (string) => { 
-    if (typeof string === 'number') {
-        return string;
-    }
+console.log(isPalindrom ('ДовОд'));
 
-    let result = ' ';
-    for (let i = 0; i < string.length; i++) {
-        if (!Number.isNaN(parseInt(string.at(i), 10))) {
-            result += string.at(i);
+//функция по извлечению чисел и строки
+const extractNumber = (str) => { 
+    const pureStr = typeof str === 'number' ? String(str) : str;
+    let result = '';
+    
+    for (const char of pureStr) {
+        if (!Number.isNaN(parseInt(char, 10))) {
+            result += char;
         }
     }
 
     return parseInt(result, 10);
 }
 
+console.log(extractNumber('-1'));
+
 //функция для проверки длины строки
-const isStringLengthEqual = (string, length) => { 
-    const result = string.length <= length;
+const isStrLengthEqual = (str, length) => str.length <= length;
+
+console.log(isStringLengthEqual('проверяемая строка', 20));
+
+//функция с добавлением символов к исходной строке
+const myPadStart = (string, minLength, pad) => {
+    let result = string;
+
+    while (result.length < minLength) {
+        const newResultLength = result.length + pad.length;
+        const actualPad = newResultLength <= minLength ? pad : pad.slice(0, minLength - newResultLength);
+            result = actualPad + result;
+    }
+    
     return result;
 }
 
-
+console.log(myPadStart('q', 4, 'we'));
