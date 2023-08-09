@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 //функция для проверки на палиндром
 const isPalindrom = (str) => {
   const tempStr = str
@@ -33,7 +32,7 @@ const extractNumber = (str) => {
 const isStrLengthEqual = (str, length) => str.length <= length;
 
 //функция с добавлением символов к исходной строке
-const padStart = (str, minLength, pad) => {
+const myPadStart = (str, minLength, pad) => {
   let result = str;
 
   while (result.length < minLength) {
@@ -44,3 +43,8 @@ const padStart = (str, minLength, pad) => {
 
   return result;
 };
+
+isPalindrom ('ДовОд');
+extractNumber('1 кефир, 0.5 батона');
+isStrLengthEqual('проверяемая строка', 20);
+myPadStart('q', 4, 'we');
