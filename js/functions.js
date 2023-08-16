@@ -32,7 +32,7 @@ const extractNumber = (str) => {
 const isStrLengthEqual = (str, length) => str.length <= length;
 
 //функция с добавлением символов к исходной строке
-const myPadStart = (str, minLength, pad) => {
+const padStart = (str, minLength, pad) => {
   let result = str;
 
   while (result.length < minLength) {
@@ -47,4 +47,4 @@ const myPadStart = (str, minLength, pad) => {
 isPalindrom ('ДовОд');
 extractNumber('1 кефир, 0.5 батона');
 isStrLengthEqual('проверяемая строка', 20);
-myPadStart('q', 4, 'we');
+padStart('q', 4, 'we');
