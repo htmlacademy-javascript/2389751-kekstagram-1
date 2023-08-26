@@ -1,5 +1,3 @@
-import './util.js';
+import './utils.js';
 import './data.js';
-import {createGallery} from '/data.js';
-
-createGallery(25);
+import './template.js';
