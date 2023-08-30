@@ -1,5 +1,7 @@
-import './util.js';
-import './data.js';
-import {createGallery} from '/data.js';
+import './utils.js';
+import {renderGallery} from './gallery.js';
+import {createGallery} from './data.js';
 
-createGallery(25);
+const pictureGallery = createGallery(25);
+
+renderGallery(pictureGallery);
