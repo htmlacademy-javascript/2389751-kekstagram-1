@@ -23,6 +23,7 @@ const renderGallery = (data) => {
 
   data.forEach((picture) => {
     const template = createTemplatePicture(picture);
+
     fragment.append(template);
   });
 

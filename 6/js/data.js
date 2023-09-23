@@ -33,16 +33,16 @@ const DESCRIPTIONS = [
   'Все пошло не по плану'
 ];
 
-const createComment = (index) => ({
-  id: index,
+const createComment = (id) => ({
+  id,
   avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
   message: getRandomArrayElement(COMMENTS),
   name: getRandomArrayElement(NAMES),
 });
 
-const createPhoto = (index) => ({
-  id: index,
-  url: `photos/${index}.jpg`,
+const createPhoto = (id) => ({
+  id,
+  url: `photos/${id}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(15, 200),
   comments: Array.from({ length: getRandomInteger(1, 25) }, (_, i) => createComment(i + 1)),
