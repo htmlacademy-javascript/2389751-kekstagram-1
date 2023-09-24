@@ -12,7 +12,7 @@ const renderPictureDetails = ({url, likes, description}) => {
   bigPicture.querySelector('.social__caption').textContent = description;
 };
 
-const onDocumentKeydownEscape = (evt) => {
+const onPictureKeydownClose = (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     closeBigPicture();
@@ -24,24 +24,24 @@ function closeBigPicture () {
   commentCount.classList.remove('hidden');
   commentsLoader.classList.remove('hidden');
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeydownEscape);
+  document.removeEventListener('keydown', onPictureKeydownClose);
 }
 
 const createCommentElement = ({avatar, message, name}) => {
-  const template = commentTemplate.content.cloneNode(true);
+  const element = commentTemplate.content.cloneNode(true);
 
-  template.querySelector('.social__picture').src = avatar;
-  template.querySelector('.social__picture').alt = name;
-  template.querySelector('.social__text').textContent = message;
+  element.querySelector('.social__picture').src = avatar;
+  element.querySelector('.social__picture').alt = name;
+  element.querySelector('.social__text').textContent = message;
 
-  return template;
+  return element;
 };
 
 const renderComments = (data) => {
   const fragment = document.createDocumentFragment();
 
   data.forEach((item) => {
-    const comment = createCommentElement(item);
+    const comment = createCommentElement (item);
 
     fragment.append(comment);
   });
@@ -54,7 +54,7 @@ export const showBigPicture = (data) => {
   commentCount.classList.add('hidden');
   commentsLoader.classList.add('hidden');
   document.body.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydownEscape);
+  document.addEventListener('keydown', onPictureKeydownClose);
   closeButton.addEventListener('click', closeBigPicture);
 
   renderPictureDetails(data);
