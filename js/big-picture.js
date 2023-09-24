@@ -25,6 +25,7 @@ function closeBigPicture () {
   commentsLoader.classList.remove('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPictureKeydownClose);
+  commentsList.innerHTML = '';
 }
 
 const createCommentElement = ({avatar, message, name}) => {
@@ -41,7 +42,7 @@ const renderComments = (data) => {
   const fragment = document.createDocumentFragment();
 
   data.forEach((item) => {
-    const comment = createCommentElement (item);
+    const comment = createCommentElement(item);
 
     fragment.append(comment);
   });
