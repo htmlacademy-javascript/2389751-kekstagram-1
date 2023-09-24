@@ -1,26 +1,53 @@
+import { showBigPicture } from './big-picture.js';
+import { createGallery } from './data.js';
+
 const userPicture = document
   .querySelector('#picture')
   .content.querySelector('.picture');
-
 const gallery = document.querySelector('.pictures');
 
-const createTemplate = ({comments, description, likes, url}) => {
-  const templatePicture = userPicture.cloneNode(true);
+const createPictureElement = ({ comments, description, likes, url, id }) => {
+  const pictureElement = userPicture.cloneNode(true);
 
-  templatePicture.querySelector('.picture__img').src = url;
-  templatePicture.querySelector('.picture__img').alt = description;
-  templatePicture.querySelector('.picture__comments').textContent = comments.length;
-  templatePicture.querySelector('.picture__likes').textContent = likes;
+  pictureElement.querySelector('.picture__img').src = url;
+  pictureElement.querySelector('.picture__img').alt = description;
+  pictureElement.querySelector('.picture__comments').textContent = comments.length;
+  pictureElement.querySelector('.picture__likes').textContent = likes;
+  pictureElement.dataset.id = id;
 
-  return templatePicture;
+  return pictureElement;
 };
 
-export const renderGallery = (data) => {
+const renderGallery = (data) => {
   const fragment = document.createDocumentFragment();
+
   data.forEach((picture) => {
-    const template = createTemplate(picture);
+    const template = createPictureElement(picture);
+
     fragment.append(template);
   });
 
   gallery.append(fragment);
 };
+
+const pictures = createGallery();
+
+gallery.addEventListener('click', (evt) => {
+  const thumbnail = evt.target.closest('[data-id]');
+
+  if (!thumbnail) {
+    return;
+  }
+
+  const picture = pictures.find(
+    (item) => item.id === +thumbnail.dataset.id
+  );
+
+  if (!picture) {
+    return;
+  }
+
+  showBigPicture(picture);
+});
+
+renderGallery(pictures);

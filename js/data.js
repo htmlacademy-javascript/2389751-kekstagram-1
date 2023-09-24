@@ -1,4 +1,4 @@
-import {getRandomInteger, getRandomArrayElement} from './utils.js';
+import { getRandomInteger, getRandomArrayElement } from './utils.js';
 
 const NAMES = [
   'Иван',
@@ -35,11 +35,10 @@ const DESCRIPTIONS = [
 
 const createComment = (id) => ({
   id,
-  avatar: `img/avatar-${id}.svg`,
+  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
   message: getRandomArrayElement(COMMENTS),
   name: getRandomArrayElement(NAMES),
 });
-
 
 const createPhoto = (id) => ({
   id,
@@ -49,4 +48,4 @@ const createPhoto = (id) => ({
   comments: Array.from({ length: getRandomInteger(1, 25) }, (_, i) => createComment(i + 1)),
 });
 
-export const createGallery = (num) => Array.from({ length: num }, (_, i) => createPhoto(i + 1));
+export const createGallery = () => Array.from({ length: 25 }, (_, i) => createPhoto(i + 1));
