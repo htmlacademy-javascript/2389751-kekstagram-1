@@ -6,23 +6,23 @@ const userPicture = document
   .content.querySelector('.picture');
 const gallery = document.querySelector('.pictures');
 
-const createTemplatePicture = ({ comments, description, likes, url, id }) => {
-  const templatePicture = userPicture.cloneNode(true);
+const createPictureElement = ({ comments, description, likes, url, id }) => {
+  const pictureElement = userPicture.cloneNode(true);
 
-  templatePicture.querySelector('.picture__img').src = url;
-  templatePicture.querySelector('.picture__img').alt = description;
-  templatePicture.querySelector('.picture__comments').textContent = comments.length;
-  templatePicture.querySelector('.picture__likes').textContent = likes;
-  templatePicture.dataset.id = id;
+  pictureElement.querySelector('.picture__img').src = url;
+  pictureElement.querySelector('.picture__img').alt = description;
+  pictureElement.querySelector('.picture__comments').textContent = comments.length;
+  pictureElement.querySelector('.picture__likes').textContent = likes;
+  pictureElement.dataset.id = id;
 
-  return templatePicture;
+  return pictureElement;
 };
 
 const renderGallery = (data) => {
   const fragment = document.createDocumentFragment();
 
   data.forEach((picture) => {
-    const template = createTemplatePicture(picture);
+    const template = createPictureElement(picture);
 
     fragment.append(template);
   });
