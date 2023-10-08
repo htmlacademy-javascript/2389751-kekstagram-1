@@ -49,6 +49,10 @@ const renderComments = (data) => {
   }
 };
 
+const onCommentsLoaderClick = () => {
+  renderComments(currentPostComments);
+};
+
 const onPictureEscapeKeyClose = (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
@@ -56,16 +60,11 @@ const onPictureEscapeKeyClose = (evt) => {
   }
 };
 
-const onCommentsLoaderClick = () => {
-  renderComments(currentPostComments);
-};
-
 function closeBigPicture () {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPictureEscapeKeyClose);
   commentsLoaderButton.removeEventListener('click', onCommentsLoaderClick);
-  commentsLoaderButton.classList.remove('hidden');
 
   showingComments = 0;
   commentsList.innerHTML = '';
