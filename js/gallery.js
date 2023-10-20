@@ -38,6 +38,7 @@ gallery.addEventListener('click', (evt) => {
   if (!thumbnail) {
     return;
   }
+  evt.preventDefault();
 
   const picture = pictures.find(
     (item) => item.id === +thumbnail.dataset.id
@@ -48,6 +49,7 @@ gallery.addEventListener('click', (evt) => {
   }
 
   showBigPicture(picture);
+
 });
 
 renderGallery(pictures);

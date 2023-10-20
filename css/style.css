@@ -1408,3 +1408,21 @@ main {
 .hidden {
   display: none;
 }
+
+.img-upload__field-wrapper--invalid {
+  position: relative;
+}
+
+.img-upload__field-wrapper--invalid input {
+  outline: #f30000 solid 2px;
+}
+
+.form__error {
+  position: absolute;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #f30000;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
