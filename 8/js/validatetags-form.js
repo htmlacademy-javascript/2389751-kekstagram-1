@@ -23,6 +23,7 @@ const isUniqeTags = (tags) => {
 };
 
 const validateHashtags = () => {
+
   if (!hashtagsInputField.value) {
     return true;
   }
@@ -39,12 +40,14 @@ const validateHashtags = () => {
 
   const check = hashtags.every((hashtag) => {
     const isValid = validateHashtag(hashtag);
+
     if (!isValid) {
       validationMessage = 'Некорректное написание хэш-тега';
       return false;
     }
 
     const isUnique = isUniqeTags(hashtags);
+
     if (!isUnique) {
       validationMessage = 'Хэш-теги повторяются';
     }
