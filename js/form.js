@@ -1,45 +1,40 @@
-const formUpload = document.querySelector('.img-upload__form');
-const fileUploadField = formUpload.querySelector('#upload-file');
-const formOverlay = formUpload.querySelector('.img-upload__overlay');
-const closeButton = formUpload.querySelector('#upload-cancel');
-const hashtagsInputField = formUpload.querySelector('.text__hashtags');
-const descriptionInputField = formUpload.querySelector('.text__description');
+import { onFormValidateHashtag } from './validatetags-form.js';
+
+const uploadForm = document.querySelector('.img-upload__form');
+const fileUploadField = uploadForm.querySelector('#upload-file');
+const formOverlay = uploadForm.querySelector('.img-upload__overlay');
+const closeButton = uploadForm.querySelector('#upload-cancel');
+const hashtagsInputField = uploadForm.querySelector('.text__hashtags');
+const descriptionInputField = uploadForm.querySelector('.text__description');
 
 const closeForm = () => {
-
-  formUpload.reset();
+  uploadForm.reset();
   formOverlay.classList.add('hidden');
+  uploadForm.removeEventListener('submit', onFormValidateHashtag);
+  document.removeEventListener('keydown', onDocumentKeydown);
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onFormEscapeKeyClose);
 };
 
-function onFormEscapeKeyClose(evt) {
-  if (evt.key === 'Escape') {
+function onDocumentKeydown(evt) {
+  const activeElement = document.activeElement;
+
+  if (activeElement !== descriptionInputField && activeElement !== hashtagsInputField && evt.key === 'Escape') {
+    evt.preventDefault();
     closeForm();
   }
 }
 
-const onInputEscapeKeyIgnore = (evt) => {
-  if (evt.key === 'Escape') {
-    evt.stopPropagation();
-  }
-};
-
 const onCloseButtonClick = (evt) => {
   evt.preventDefault();
   closeForm();
-  hashtagsInputField.removeEventListener('keydown', onInputEscapeKeyIgnore);
-  descriptionInputField.removeEventListener('keydown', onInputEscapeKeyIgnore);
 };
 
 const openForm = () => {
-
   formOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  document.addEventListener('keydown', onFormEscapeKeyClose);
-  hashtagsInputField.addEventListener('keydown', onInputEscapeKeyIgnore);
-  descriptionInputField.addEventListener('keydown', onInputEscapeKeyIgnore);
+  document.addEventListener('keydown', onDocumentKeydown);
+  uploadForm.addEventListener('submit', onFormValidateHashtag);
   closeButton.addEventListener('click', onCloseButtonClick);
 };
 
-fileUploadField.addEventListener('change', () => openForm(formOverlay));
+fileUploadField.addEventListener('change', openForm);

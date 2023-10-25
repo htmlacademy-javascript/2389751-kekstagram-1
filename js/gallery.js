@@ -38,6 +38,7 @@ gallery.addEventListener('click', (evt) => {
   if (!thumbnail) {
     return;
   }
+
   evt.preventDefault();
 
   const picture = pictures.find(
