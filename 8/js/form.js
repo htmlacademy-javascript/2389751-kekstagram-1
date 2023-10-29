@@ -1,4 +1,4 @@
-import { onFormValidateHashtag } from './validatetags-form.js';
+import { onFormValidateTags } from './validate-tags-form.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const fileUploadField = uploadForm.querySelector('#upload-file');
@@ -10,7 +10,7 @@ const descriptionInputField = uploadForm.querySelector('.text__description');
 const closeForm = () => {
   uploadForm.reset();
   formOverlay.classList.add('hidden');
-  uploadForm.removeEventListener('submit', onFormValidateHashtag);
+  uploadForm.removeEventListener('submit', onFormValidateTags);
   document.removeEventListener('keydown', onDocumentKeydown);
   document.body.classList.remove('modal-open');
 };
@@ -33,7 +33,7 @@ const openForm = () => {
   formOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
-  uploadForm.addEventListener('submit', onFormValidateHashtag);
+  uploadForm.addEventListener('submit', onFormValidateTags);
   closeButton.addEventListener('click', onCloseButtonClick);
 };
 
