@@ -31,26 +31,26 @@ const validateTags = (tags) => {
 
   if (!isValidCount) {
     validationMessage = 'Максимальное количество хэш-тегов не более 5';
+    return false;
   }
+
   const isValid = hashtags.every(isHashtagValid);
 
   if (!isValid) {
     validationMessage = 'Некорректное написание хэш-тега';
+    return false;
   }
+
   const isUnique = isTagsUniqe(hashtags);
 
   if (!isUnique) {
     validationMessage = 'Хэш-теги повторяются';
+    return false;
   }
-  return isValidCount && isValid && isUnique;
+
+  return true;
 };
 
 pristine.addValidator(hashtagsInputField, validateTags, () => validationMessage);
 
-export const onFormValidateTags = (evt) => {
-  validateTags();
-
-  if (!pristine.validate()) {
-    evt.preventDefault();
-  }
-};
+export const isHashtagsValid = () => !pristine.validate();
